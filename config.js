@@ -12,7 +12,7 @@ const APP_CONFIG = {
   textColor: "#101827",
 
   // API
-  scriptApi: "https://script.google.com/macros/s/AKfycbw6MbKKpmbo2_kiWlIi7308uxIBYSkqXFHt37kXG8A6r5ouqkaf-t1sV6U3Q2Q8JqI4/exec",
+  scriptApi: "https://script.google.com/macros/s/AKfycbxfmL8OXpraFy7mlx6ulfXIh6dToJJsxgdnNG8fSYGJVsNyqOuK81lj3X5oxIxR4MUj/exec",
 
   // Seller contact
   sellerWhatsApp: "919836697502",
