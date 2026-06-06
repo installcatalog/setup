@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catalog Upload</title>
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-page="upload">
+<div class="topbar">
+  <div>
+    <h1 id="uploadTitle">Catalog Upload</h1>
+    <p id="uploadSubtitle">Choose upload action</p>
+  </div>
+  <div class="top-actions">
+    <button class="icon-action" onclick="location.href='grow.html'" aria-label="Back to grow"><i class="fa-solid fa-arrow-left"></i></button>
+  </div>
+</div>
+
+<main class="page-shell">
+  <section class="hero-panel upload-start" id="startPanel">
+    <div class="hero-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+    <h2>Seller Product Desk</h2>
+    <p>Create a new catalog product or edit a live product without touching the Sheet manually.</p>
+    <div class="choice-grid">
+      <button class="choice-card" onclick="startNewProduct()">
+        <i class="fa-solid fa-plus"></i>
+        <strong>New Product</strong>
+        <span>Add a fresh item to catalog</span>
+      </button>
+      <button class="choice-card" onclick="showEditDesk()">
+        <i class="fa-solid fa-pen-to-square"></i>
+        <strong>Edit Product</strong>
+        <span>Update images price stock or details</span>
+      </button>
+    </div>
+  </section>
+
+  <section class="panel hidden" id="editDesk">
+    <div class="section-head">
+      <div>
+        <h2>Edit Uploaded Product</h2>
+        <p>Search product and tap Edit.</p>
+      </div>
+      <button class="ghost-btn" onclick="loadLiveProducts()"><i class="fa-solid fa-rotate"></i> Refresh</button>
+    </div>
+    <div class="search-row">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input id="editSearch" type="search" placeholder="Search name ID category or price" oninput="renderEditList()">
+    </div>
+    <div class="chip-row" id="editCategories"></div>
+    <div class="list-stack" id="editList"></div>
+  </section>
+
+  <section class="panel hidden" id="formPanel">
+    <div class="section-head">
+      <div>
+        <h2 id="formTitle">New Product</h2>
+        <p id="formHint">Save clean product data to Sheet.</p>
+      </div>
+      <button class="ghost-btn danger-soft" onclick="confirmClearForm()">Clear</button>
+    </div>
+
+    <div class="form-grid">
+      <label>
+        <span>Product ID</span>
+        <div class="inline-field">
+          <input id="productId" type="text" readonly>
+          <button class="ghost-btn" id="regenIdBtn" onclick="regenerateProductId()">Regenerate</button>
+        </div>
+      </label>
+
+      <label>
+        <span>Category</span>
+        <select id="category" onchange="syncProductTypeOptions(); autoFillText();">
+          <option value="">Select category</option>
+        </select>
+      </label>
+
+      <label>
+        <span>Product Type</span>
+        <select id="productType" onchange="autoFillText()"></select>
+      </label>
+
+      <label>
+        <span>Product Name</span>
+        <input id="productName" type="text" placeholder="Example Premium Silk Saree" oninput="cleanTextInput(this)">
+      </label>
+
+      <label>
+        <span>Price</span>
+        <input id="price" type="number" inputmode="numeric" placeholder="499">
+      </label>
+
+      <label>
+        <span>Stock</span>
+        <select id="stock">
+          <option>In Stock</option>
+          <option>Out Of Stock</option>
+        </select>
+      </label>
+
+      <label>
+        <span>Show</span>
+        <select id="show">
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+      </label>
+
+      <label>
+        <span>Description1</span>
+        <input id="description1" type="text" oninput="cleanTextInput(this)">
+      </label>
+
+      <label class="wide">
+        <span>Description2</span>
+        <textarea id="description2" rows="3" oninput="cleanTextInput(this)"></textarea>
+      </label>
+
+      <label>
+        <span>Main Image Url</span>
+        <input id="imageUrl" type="url" placeholder="Main image URL">
+      </label>
+
+      <label>
+        <span>Image Url2</span>
+        <input id="imageUrl2" type="url" placeholder="Optional image URL">
+      </label>
+
+      <label>
+        <span>Image Url3</span>
+        <input id="imageUrl3" type="url" placeholder="Optional image URL">
+      </label>
+
+      <label>
+        <span>Image Url4</span>
+        <input id="imageUrl4" type="url" placeholder="Optional image URL">
+      </label>
+    </div>
+
+    <div class="preview-card" id="uploadPreview"></div>
+
+    <div class="action-row">
+      <button class="ghost-btn" onclick="backToStart()">Back</button>
+      <button class="ghost-btn warning hidden" id="deleteBtn" onclick="confirmDeleteProduct()">Delete Product</button>
+      <button class="primary-btn" id="saveBtn" onclick="saveProduct()">Save Product</button>
+    </div>
+  </section>
+</main>
+
+<div class="toast" id="toast"></div>
+<div class="modal-backdrop hidden" id="confirmModal">
+  <div class="modal-card">
+    <div class="modal-icon"><i class="fa-solid fa-circle-info"></i></div>
+    <h2 id="confirmTitle">Confirm</h2>
+    <p id="confirmMessage"></p>
+    <div class="modal-actions">
+      <button class="ghost-btn" onclick="closeConfirm()">Back</button>
+      <button class="primary-btn" id="confirmActionBtn">Confirm</button>
+    </div>
+  </div>
+</div>
+
+<script src="config.js"></script>
+<script src="app.js"></script>
+<script src="upload.js"></script>
+</body>
+</html>
