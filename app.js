@@ -112,7 +112,7 @@ function renderShell(){
     let user = currentUser();
     header.innerHTML = `
       <div class="brand-block">
-        <div class="logo-dot"><i class="fa-solid fa-shirt"></i></div>
+        <img class="brand-logo" src="icon-192.png" alt="Purple Fashion">
         <div>
           <div class="brand-name">${escapeHTML(APP_CONFIG.logoText || APP_CONFIG.brandName)}</div>
           <div class="subline">${user ? "Hi, " + escapeHTML(user.username) : "Premium clothing catalog"}</div>
